@@ -54,6 +54,7 @@ KEYMAP_SHIFT_FN = {
 _KC_LEFT_SHIFT = const(23)
 _KC_SHIFT = const(36)
 _KC_FN = const(3)
+_KC_ALT = const(5)
 
 _I2C_ADDR = const(0x55)
 
