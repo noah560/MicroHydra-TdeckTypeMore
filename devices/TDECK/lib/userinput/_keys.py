@@ -43,6 +43,12 @@ KEYMAP_FN = {
     5:'ALT',22:'7',  21:'8',  38:'9', 37:'?', 53:'!', 54:',', 70:'.', 69:'SPEAK',
           23:'SHIFT',  7:'0',          6:'TAB',     3:'FN',  36:'SHIFT',
     }
+KEYMAP_SHIFT_FN = {
+    1:'&',   2:'F1', 17:'F2', 33:'F3',35:'(', 51:')', 49:'^', 67:'%', 65:'=', 20:'@',
+    4:'*',  18:'F4', 19:'F5', 39:'F6',34:'/', 50:'{', 55:'}', 71:"[", 66:']', 68:'DEL',
+    5:'ALT',22:'F7', 21:'F8', 38:'F9',37:'`', 53:'~', 54:'<', 70:'>', 69:'SPEAK',
+          23:'SHIFT',  7:'F10',        6:'TAB',     3:'FN',  36:'SHIFT',
+    }
 
 
 _KC_LEFT_SHIFT = const(23)
@@ -280,14 +286,16 @@ class Keys:
 
 
         # process special keys before converting to readable format
+        mod_fn = _KC_FN in codes or force_fn
+        mod_shift = _KC_SHIFT in codes or force_shift
         if _KC_FN in codes and _KC_SHIFT in codes:
             keymap = KEYMAP
             keys.append('OPT')
-        elif (_KC_FN in codes) \
-        or force_fn:
+        elif mod_shift and mod_fn:
+            keymap = KEYMAP_SHIFT_FN
+        elif mod_fn:
             keymap = KEYMAP_FN
-        elif (_KC_SHIFT in codes or _KC_LEFT_SHIFT in codes) \
-        or force_shift:
+        elif mod_shift:
             keymap = KEYMAP_SHIFT
         else:
             keymap = KEYMAP
