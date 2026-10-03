@@ -287,8 +287,8 @@ class Keys:
 
         # process special keys before converting to readable format
         mod_fn = _KC_FN in codes or force_fn
-        mod_shift = _KC_SHIFT in codes or force_shift
-        if _KC_FN in codes and _KC_SHIFT in codes:
+        mod_shift = (_KC_SHIFT in codes or _KC_LEFT_SHIFT) or force_shift
+        if _KC_FN in codes and _KC_ALT in codes:
             keymap = KEYMAP
             keys.append('OPT')
         elif mod_shift and mod_fn:
