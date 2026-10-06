@@ -38,16 +38,16 @@ KEYMAP_SHIFT = {
           23:'SHIFT',  7:'CTL',       6:'SPC',     3:'FN',  36:'SHIFT',
     }
 KEYMAP_FN = {
-    1:'#',   2:'1',  17:'2',  33:'3', 35:'(', 51:')', 49:'_', 67:'-', 65:'+', 20:'@',
-    4:'*',  18:'4',  19:'5',  39:'6', 34:'/', 50:':', 55:';', 71:"'", 66:'"', 68:'DEL',
-    5:'ALT',22:'7',  21:'8',  38:'9', 37:'?', 53:'!', 54:',', 70:'.', 69:'SPEAK',
-          23:'SHIFT',  7:'0',          6:'TAB',     3:'FN',  36:'SHIFT',
+    1:'#',   2:'|',  17:'UP', 33:'\\', 35:'(', 51:')', 49:'_', 67:'-', 65:'+', 20:'@',
+    4:'*',  18:'LEFT',19:'DOWN',39:'RIGHT',34:'/',50:':',55:';',71:"'",66:'"',68:'DEL',
+    5:'ALT',22:'^',  21:'F1', 38:'F@',37:'?', 53:'!', 54:',', 70:'.', 69:'SPEAK',
+          23:'SHIFT',  7:'F3',         6:'TAB',     3:'FN',  36:'SHIFT',
     }
 KEYMAP_SHIFT_FN = {
-    1:'&',   2:'^',  17:'\\', 33:'F1',35:'(', 51:')', 49:'^', 67:'%', 65:'=', 20:'@',
-    4:'*',  18:'ESC',19:'UP', 39:'F2',34:'/', 50:'{', 55:'}', 71:"[", 66:']', 68:'DEL',
-    5:'ALT',22:'LEFT',21:'DOWN',38:'RIGHT',37:'`',53:'~',54:'<',70:'>',69:'SPEAK',
-          23:'SHIFT',  7:'F3',         6:'TAB',     3:'FN',  36:'SHIFT',
+    1:'&',   2:'1',  17:'2',  33:'3', 35:'(', 51:')', 49:'^', 67:'%', 65:'=', 20:'@',
+    4:'*',  18:'4',  19:'5',  39:'6', 34:'/', 50:'{', 55:'}', 71:"[", 66:']', 68:'DEL',
+    5:'ALT',22:'7',  21:'8',  38:'9', 37:'`',53:'~',54:'<',70:'>',69:'SPEAK',
+          23:'SHIFT',  7:'F0',         6:'TAB',     3:'FN',  36:'SHIFT',
     }
 
 
@@ -79,7 +79,7 @@ Compatibility mode will now be enabled...""")
 
 
 MOD_KEYS = const(("FN", "SHIFT", "CTL", "ALT", "OPT"))
-ALWAYS_NEW_KEYS = const(('UP', 'RIGHT', 'LEFT', 'DOWN'))
+ALWAYS_NEW_KEYS = const(('TB_UP', 'TB_RIGHT', 'TB_LEFT', 'TB_DOWN'))
 
 
 
@@ -98,7 +98,7 @@ class Keys:
     secondary_action = "ENT"
     aux_action = "SPC"
 
-    ext_dir_dict = {'i':'UP', 'j':'LEFT', 'k':'DOWN', 'l':'RIGHT'}
+    ext_dir_dict = {'i':'UP', 'j':'LEFT', 'k':'DOWN', 'l':'RIGHT', 'TB_UP': 'UP', 'TB_DOWN': 'DOWN', 'TB_LEFT': 'LEFT', 'TB_RIGHT': 'RIGHT'}
 
     def __init__(self, tb_repeat_ms=60, **kwargs):  # noqa: ARG002
         # turn on keyboard
@@ -189,15 +189,15 @@ class Keys:
 
         if tb_x:
             if tb_x > 0:
-                keylist.append("RIGHT")
+                keylist.append("TB_RIGHT")
             else:
-                keylist.append("LEFT")
+                keylist.append("TB_LEFT")
             self.tb_x = 0
         if tb_y:
             if tb_y > 0:
-                keylist.append("DOWN")
+                keylist.append("TB_DOWN")
             else:
-                keylist.append("UP")
+                keylist.append("TB_UP")
             self.tb_y = 0
 
 
