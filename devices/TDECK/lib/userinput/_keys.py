@@ -292,6 +292,9 @@ class Keys:
         if _KC_FN in codes and _KC_ALT in codes:
             keymap = KEYMAP
             keys.append('OPT')
+        elif force_fn and (not force_shift) and mod_shift:
+            # Make selections work better in the editor
+            keymap = KEYMAP_FN
         elif mod_shift and mod_fn:
             keymap = KEYMAP_SHIFT_FN
         elif mod_fn:
